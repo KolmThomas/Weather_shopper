@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # Kopiere die Projektdateien in das Arbeitsverzeichnis
 COPY . .
 
+# Kopiere die .env-Datei
+#COPY .env .
+
 # Installiere die Abhängigkeiten
 RUN npm install
 
