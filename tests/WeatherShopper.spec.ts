@@ -1,14 +1,48 @@
 import { test, expect } from '@playwright/test';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 test('WeatherShopperFull', async ({ page }) => {
   // Load environment variables
-  const baseUrl = process.env.BASE_URL || 'https://weathershopper.pythonanywhere.com/';
-  const minTemp = parseInt(process.env.MIN_TEMP || '19');
-  const maxTemp = parseInt(process.env.MAX_TEMP || '34');
-  const moisturizingArticle1 = process.env.MOISTURIZING_ARTICLE_1 || 'Aloe';
-  const moisturizingArticle2 = process.env.MOISTURIZING_ARTICLE_2 || 'Almond';
-  const sunArticle1 = process.env.SUN_ARTICLE_1 || 'SPF-50';
-  const sunArticle2 = process.env.SUN_ARTICLE_2 || 'SPF-30';
+  const baseUrl = process.env.BASE_URL; // 'https://weathershopper.pythonanywhere.com/'
+  const minTempStr = process.env.MIN_TEMP; // '19'
+  const maxTempStr = process.env.MAX_TEMP; // '34'
+  const moisturizingArticle1 = process.env.MOISTURIZING_ARTICLE_1; // 'Aloe'
+  const moisturizingArticle2 = process.env.MOISTURIZING_ARTICLE_2; // 'Almond'
+  const sunArticle1 = process.env.SUN_ARTICLE_1; // 'SPF-50'
+  const sunArticle2 = process.env.SUN_ARTICLE_2; // 'SPF-30'
+
+  // Variables for Temperature
+  let minTemp = 0;
+  let maxTemp = 0;
+  // Array for the two bought articles + price for step 3
+  let Articles: [string, number][] = [
+    ['Test', 999],
+    ['Test2', 999]
+  ];
+  // Variable for the total price
+  let numericPrice = 0;
+
+  if (minTempStr !== undefined && maxTempStr !== undefined) {
+    minTemp = parseInt(minTempStr.replace(/'/g, ''), 10);
+    maxTemp = parseInt(maxTempStr.replace(/'/g, ''), 10);
+  
+  } else {
+    console.error('One or both of the environment variables MIN_TEMP or MAX_TEMP are not defined.');
+    await page.close();
+    return;
+  }
+  
+  // Check if every environment variable is filled
+  if ( baseUrl == undefined 
+    || moisturizingArticle1 == undefined 
+    || moisturizingArticle2 == undefined 
+    || sunArticle1 == undefined 
+    || sunArticle2== undefined ) {
+    console.error('One or more of the environment variables are not defined. Please check your .env File for baseUrl, moisturizingArticle1, moisturizingArticle2, sunArticle1, sunArticle2');
+    await page.close();
+    return;
+  }
 
   // Open Page and check the Title
   await page.goto(baseUrl);
@@ -26,12 +60,6 @@ test('WeatherShopperFull', async ({ page }) => {
   const Temperature = await TemperatureElement.innerText();
   const BaseTemperature = parseInt(Temperature.replace('°C', '').trim());
 
-  // Array for the two bought articles + price for step 3
-  let Articles: [string, number][] = [
-      ['Test', 999],
-      ['Test2', 999]
-  ];
-  let numericPrice = 0;
   console.log('Temperature:', BaseTemperature);
 
   // When Temperature is below minTemp °C it presses the "Buy moisturizer" Button and if it is above maxTemp C° it presses the "Buy Sunscreens" Button. Else it doesn't do anything but logs the Temperature.
