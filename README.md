@@ -16,10 +16,10 @@ Node.js
 
 **Setup**
 
-Make sure Visual Studio Code uses file association to use .env files in it's settings
+Visual Studio Code needs dotenv to use .env files:
 > npm install dotenv
 
-and make sure the .env file is filled with the following lines. :
+and make sure the .env file, in the root directory, is filled with the following lines. :
 
 >BASE_URL=
 >
