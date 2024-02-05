@@ -15,6 +15,7 @@ Node.js
 >sudo apt install npm
 
 **Setup**
+
 Make sure Visual Studio Code uses file association to use .env files in it's settings
 > npm install dotenv
 
