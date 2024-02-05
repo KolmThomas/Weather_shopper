@@ -7,9 +7,12 @@ This project utilizes Playwright to automate the interaction with the Weather Sh
 Make sure you have the following tools installed on your machine:
 
 Docker
+>sudo apt install docker.io
 
 Node.js
-
+>sudo apt install nodejs
+>
+>sudo apt install npm
 
 **Getting Started**
 
