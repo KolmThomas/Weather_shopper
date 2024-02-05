@@ -20,19 +20,19 @@ Make sure Visual Studio Code uses file association to use .env files in it's set
 
 and make sure the .env file is filled with the following lines. :
 
-BASE_URL=
-
-MIN_TEMP=
-
-MAX_TEMP=
-
-MOISTURIZING_ARTICLE_1=
-
-MOISTURIZING_ARTICLE_2=
-
-SUN_ARTICLE_1=
-
-SUN_ARTICLE_2=
+>BASE_URL=
+>
+>MIN_TEMP=
+>
+>MAX_TEMP=
+>
+>MOISTURIZING_ARTICLE_1=
+>
+>MOISTURIZING_ARTICLE_2=
+>
+>SUN_ARTICLE_1=
+>
+>SUN_ARTICLE_2=
 
 
 
