@@ -39,7 +39,7 @@ test('WeatherShopperFull', async ({ page }) => {
     || moisturizingArticle2 == undefined 
     || sunArticle1 == undefined 
     || sunArticle2== undefined ) {
-    console.error('One or more of the environment variables are not defined. Please check your .env File for baseUrl, moisturizingArticle1, moisturizingArticle2, sunArticle1, sunArticle2');
+    console.error('One or more of the environment variables are not defined. Please check your .env File for BASE_URL, MOISTURIZING_ARTICLE_1, MOISTURIZING_ARTICLE_2, SUN_ARTICLE_1, SUN_ARTICLE_2');
     await page.close();
     return;
   }
